@@ -1,0 +1,21 @@
+{% extends 'blog_app/base.html' %}
+
+{% block body_block %}
+<div class="container">
+<div class="bg-light p-5 rounded-lg" align="left">
+  <h1 class="display-4">Login</h2>
+  <hr class="my-4">
+  <h3>Must be a superuser.</h3>
+  <p class="lead"> Please check with the site administrator.</p>
+  {% if form.errors %}
+    <p> Incorrect username or password!</p>
+  {% endif %}
+  <form action="{% url 'login' %}" method="POST">
+  {% csrf_token %}
+  {{form.as_p}}
+  <input type="submit" class='btn btn-primary btn-lg' value="Login">
+  <input type="hidden" name="next" value="{{ next }}">
+  </form>
+  </div>
+</div>
+{% endblock %}

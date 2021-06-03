@@ -1,0 +1,20 @@
+{% extends 'blog_app/base.html' %}
+
+{% block body_block %}
+
+<div class="container">
+  {% for post in post_list %}
+    <div class="post block">
+      <ul class="list-group">
+        <li class="list-group-item"><h1 class="loader"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+        <div class="date">
+          <p>Published on: {{post.published_date|date:"D M Y"}}</p>
+          <p>Posted by: {{post.author}}</p>
+        </div>
+        <a class="loader" href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approve_comments.count }}</a></li>
+      </ul>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
